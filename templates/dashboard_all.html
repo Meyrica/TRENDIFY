@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Products - Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fb;
+    }
+
+    .main {
+      margin-left: 220px;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 26px;
+      color: #112d4e;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      height: 120px;
+      object-fit: cover;
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    .card button {
+      margin-top: 15px;
+      padding: 8px 18px;
+      background: #00d4ff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .floating-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #00274d;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+      z-index: 999;
+    }
+
+    .floating-btn:hover {
+      background-color: #004080;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Include Sidebar -->
+  {% include 'sidebar_component.html' %}
+
+  <div class="main">
+    <h1>Manage Products</h1>
+    <div class="cards" id="product-cards">
+      <!-- Produk akan ditampilkan lewat JS -->
+    </div>
+  </div>
+
+  <a href="/upload" class="floating-btn">+</a>
+
+  <!-- Include JS file -->
+  <script src="{{ url_for('static', filename='js/dashboard_all.js') }}"></script>
+</body>
+</html>

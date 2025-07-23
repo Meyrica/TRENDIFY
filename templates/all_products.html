@@ -1,0 +1,89 @@
+<!-- templates/all_products.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Products - TRENDIFY</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .judul-page {
+      text-align: center;
+      padding: 40px 20px 20px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #00274d;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card h2 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #666;
+      margin: 0 10px 10px;
+    }
+
+    .no-product {
+      text-align: center;
+      padding: 50px;
+      color: #999;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header dipanggil dari file terpisah -->
+  {% include 'header_component.html' %}
+
+  <!-- JUDUL -->
+  <div class="judul-page">All Products</div>
+
+  <!-- KONTEN PRODUK -->
+  <main class="product-grid" id="productGrid">
+    <!-- Produk akan dimuat lewat JS -->
+  </main>
+
+  <script src="/static/js/all_products.js"></script>
+  {% include 'footer.html' %}
+</body>
+</html>

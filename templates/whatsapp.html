@@ -1,0 +1,57 @@
+<!-- ================= Floating WhatsApp Button ================= -->
+<a href="https://wa.me/6288219679533?text=Halo%20Trendify%2C%20saya%20mau%20bertanya"
+   target="_blank"
+   rel="noopener"
+   class="wa-float">
+  <img src="{{ url_for('static', filename='uploads/WA.jpg') }}" alt="Chat via WhatsApp" />
+</a>
+<div class="wa-bubble">Have a question or design request? Let's chat!</div>
+
+<style>
+  .wa-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: block;
+  }
+
+  .wa-float img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+  .wa-float:hover img {
+    transform: scale(1.12);
+  }
+
+  .wa-bubble {
+    position: fixed;
+    bottom: 95px; /* 65 icon + 10 margin + 20 spacing */
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    z-index: 9999;
+  }
+
+  .wa-float:hover + .wa-bubble {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+</style>
+<!-- =========================================================== -->

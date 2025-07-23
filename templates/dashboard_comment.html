@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Manage Comments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fb;
+    }
+
+    .main {
+      margin-left: 220px;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 26px;
+      color: #112d4e;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #112d4e;
+      color: #fff;
+    }
+
+    tr:hover {
+      background-color: #f2f2f2;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+
+    .back-btn {
+      margin-top: 20px;
+      background: #ccc;
+      color: #112d4e;
+      font-weight: bold;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      background: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar include -->
+  {% include 'sidebar_component.html' %}
+
+  <div class="main">
+    <h1>Manage Comment</h1>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Comment</th>
+          <th>Product</th>
+          <th>Time</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for comment in comments %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ comment.name }}</td>
+          <td>{{ comment.comment }}</td>
+          <td>{{ comment.title }}</td>
+          <td>{{ comment.created_at }}</td>
+          <td>
+            <form method="POST" action="{{ url_for('delete_comment', comment_id=comment.id) }}" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+              <button type="submit" class="delete-btn">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

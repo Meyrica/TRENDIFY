@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Produk</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+      color: #2f1370;
+    }
+
+    .upload-wrapper {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    /* Tombol back di luar container */
+    .back-btn {
+      position: absolute;
+      left: -15px; /* GESER KE KIRI sesuai titik merah */
+      top: 0;
+      font-size: 30px;
+      color: #00274d;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .upload-header-text {
+      margin-left: 10px;
+      margin-bottom: 30px;
+    }
+
+    .upload-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #00274d;
+      margin: 0;
+    }
+
+    .upload-subtitle {
+      font-size: 16px;
+      margin-top: 6px;
+      color: #777;
+    }
+
+    .upload-container {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .upload-left {
+      flex: 1;
+      min-width: 300px;
+      border: 2px dashed #bbb;
+      border-radius: 12px;
+      padding: 50px 20px;
+      background: #f8f9fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .upload-left p {
+      margin: 8px 0;
+      font-size: 16px;
+      color: #2f1370;
+      font-weight: 600;
+    }
+
+    .upload-left input[type="file"] {
+      display: none;
+    }
+
+    .browse-btn {
+      margin-top: 10px;
+      background-color: #00274d;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .upload-right {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .upload-right input,
+    .upload-right textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #2f1370;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .upload-right input::placeholder,
+    .upload-right textarea::placeholder {
+      color: #a1a1a1;
+    }
+
+    .upload-right textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .upload-right button {
+      width: 120px;
+      align-self: flex-end;
+      background-color: #00274d;
+      color: white;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .upload-right button:hover {
+      background-color: #221061;
+    }
+
+    @media (max-width: 768px) {
+      .upload-container {
+        flex-direction: column;
+      }
+      .back-btn {
+        left: 10px;
+        top: 10px;
+        position: static;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="upload-wrapper">
+    
+    <!-- Tombol Back -->
+    <a href="{{ url_for('dashboard_all') }}" class="back-btn">&#10094;</a>
+
+    <!-- Judul dan Subjudul -->
+    <div class="upload-header-text">
+      <h2 class="upload-title">Upload Files</h2>
+      <p class="upload-subtitle">Upload documents you want to share</p>
+    </div>
+
+    <!-- Form Upload -->
+    <form action="/add" method="POST" enctype="multipart/form-data">
+      <div class="upload-container">
+        <!-- Drop Area -->
+        <div class="upload-left">
+          <p>Drag and drop files here</p>
+          <p>-OR-</p>
+          <label class="browse-btn">
+            BROWSE FILES
+            <input type="file" name="image" accept="image/*" required>
+          </label>
+        </div>
+
+        <!-- Form Input -->
+        <div class="upload-right">
+          <input type="text" name="title" placeholder="Theme" required />
+          <input type="text" name="artist" placeholder="Designer" required />
+          <input type="text" name="price" placeholder="Price (Example: 5.000)" required />
+          <textarea name="description" rows="4" placeholder="Description Product..." required></textarea>
+          <button type="submit">UPLOAD</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Trendify</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #00274d, #004080);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: #00274d;
+    }
+
+    /* Back button seperti edit_page */
+    .back-btn {
+      position: absolute;
+      left: 30px;
+      top: 30px;
+      font-size: 30px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      z-index: 100;
+    }
+
+    .login-container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-form h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #00274d;
+    }
+
+    .login-form p {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .login-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #00274d;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border 0.3s ease;
+    }
+
+    .login-form input:focus {
+      border-color: #00274d;
+      outline: none;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #00274d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-form button:hover {
+      background-color: #003f75;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tombol back seperti edit_page -->
+  <a href="/" class="back-btn">&#10094;</a>
+
+  <div class="login-container">
+    <form class="login-form" onsubmit="return login(event)">
+      <h2>WELCOME!!</h2>
+      <p>Please login to continue</p>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="contoh@email.com" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="********" required />
+
+      <button type="submit">Login</button>
+
+      <!-- Tambahan tombol Google Login -->
+      <div style="text-align: center; margin-top: 20px;">
+        <p style="color: #777; margin-bottom: 10px;">or</p>
+        <a href="{{ url_for('google_login') }}">
+          <img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" 
+              alt="Login with Google" 
+              style="cursor:pointer;" />
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/login_page.js') }}"></script>
+</body>
+</html>  

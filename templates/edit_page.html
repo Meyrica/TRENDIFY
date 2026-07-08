@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Produk</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+      color: #00274d;
+    }
+
+    .edit-wrapper {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    /* Tombol back */
+    .back-btn {
+      position: absolute;
+      left: -15px;
+      top: 0;
+      font-size: 30px;
+      color: #00274d;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .edit-header-text {
+      margin-left: 40px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .edit-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #00274d;
+      margin: 0;
+    }
+
+    .edit-subtitle {
+      font-size: 16px;
+      margin-top: 6px;
+      color: #777;
+    }
+
+    .edit-container {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .edit-left {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .edit-left img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 2px solid #ccc;
+    }
+
+    .edit-right {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .edit-right input,
+    .edit-right textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #00274d;
+      box-sizing: border-box;
+    }
+
+    .edit-right input::placeholder,
+    .edit-right textarea::placeholder {
+      color: #a1a1a1;
+    }
+
+    .edit-right textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .edit-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .edit-buttons button {
+      background-color: #00274d;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .edit-buttons button:hover {
+      background-color: #001f3f;
+    }
+
+    #deleteBtn {
+      background-color: #f44336;
+    }
+
+    #deleteBtn:hover {
+      background-color: #d32f2f;
+    }
+
+    @media (max-width: 768px) {
+      .edit-container {
+        flex-direction: column;
+      }
+
+      .back-btn {
+        left: 10px;
+        top: 10px;
+        position: static;
+        margin-bottom: 10px;
+      }
+
+      .edit-header-text {
+        margin-left: 0;
+        margin-top: 20px;
+      }
+
+      .edit-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="edit-wrapper">
+    
+    <!-- Tombol Back -->
+    <a href="{{ url_for('product_detail', product_id=product['id']) }}" class="back-btn">&#10094;</a>
+
+    <!-- Judul dan Subjudul -->
+    <div class="edit-header-text">
+      <h2 class="edit-title">Edit Product</h2>
+      <p class="edit-subtitle">Update your product information below</p>
+    </div>
+
+    <form id="editForm" action="{{ url_for('update_product', product_id=product['id']) }}" method="POST" enctype="multipart/form-data">
+      <div class="edit-container">
+
+        <!-- Gambar -->
+        <div class="edit-left">
+          <img src="{{ url_for('static', filename='uploads/' + product['image_path']) }}" alt="{{ product['title'] }}">
+        </div>
+
+        <!-- Form -->
+        <div class="edit-right">
+          <input type="text" name="title" placeholder="Theme" value="{{ product['title'] }}" required />
+          <input type="text" name="artist" placeholder="Designer" value="{{ product['artist'] }}" required />
+          <input type="file" name="image" accept="image/*" />
+          <textarea name="description" rows="4" placeholder="Description Product..." required>{{ product['description'] }}</textarea>
+          <input type="text" name="price" placeholder="Price (Example: 5.000)" value="{{ "%.0f"|format(product['price']) }}" required />
+
+          <div class="edit-buttons">
+            <button type="submit">Update</button>
+            <button type="button" id="deleteBtn" data-id="{{ product['id'] }}">Delete</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/edit_page.js') }}"></script>
+</body>
+</html>

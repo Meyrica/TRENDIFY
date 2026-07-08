@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TRENDIFY</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .hero {
+      background-image: url('/static/uploads/hero.png');
+      background-size: cover;
+      background-position: center;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+      text-align: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero p {
+      z-index: 1;
+      font-size: 18px;
+      max-width: 800px;
+      margin-top: 10px;
+    }
+
+    .center-title {
+      text-align: center;
+      color: #00274d;
+      font-size: 32px;
+      margin: 40px 0 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+      text-align: center;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card h2 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: #666;
+      margin: 0 10px 10px;
+    }
+
+    .no-product {
+      text-align: center;
+      padding: 50px;
+      color: #999;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  {% include 'header_component.html' %}
+
+  <!-- Hero Section -->
+  <section class="hero"></section>
+
+  <!-- Judul -->
+  <h2 class="center-title">NEW DESIGN</h2>
+
+  <!-- Produk Terbaru -->
+  <main class="product-grid">
+    {% if products %}
+      {% for p in products %}
+        <div class="product-card">
+          <img src="{{ url_for('static', filename='uploads/' + p.image_path) }}" alt="{{ p.title }}">
+          <h2>{{ p.title }}</h2>
+          <p>Rp {{ "{:,.0f}".format(p.price).replace(",", ".") }}</p>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="no-product">Belum ada produk yang diupload.</div>
+    {% endif %}
+  </main>
+
+  <!-- Kategori -->
+  <section style="padding: 50px 30px; background-color: #fff;">
+    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; gap: 20px;">
+
+      <!-- Keterangan Kategori -->
+      <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; justify-content: center;">
+        <h2 style="font-size: 32px; margin-bottom: 10px;">Explore Design Options</h2>
+        <p style="font-size: 16px; color: #555; margin-bottom: 20px;">
+          Explore Our Desain Collection<br>
+          Find the Perfect Desain 
+        </p>
+        <button onclick="window.location.href='/allproducts'"
+                style="background-color: #e2b000; color: white; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer;">
+          View More
+        </button>
+      </div> 
+
+      <!-- Kategori Gambar -->
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <div style="overflow: hidden; border-radius: 8px;">
+          <img src="/static/uploads/water.jpg" alt="Kategori 1" style="width: 100%; height: 320px; object-fit: cover;">
+        </div>
+        <div style="margin-top: 10px; font-weight: bold; font-size: 18px;">Retro Pop Culture</div>
+      </div>
+
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <div style="overflow: hidden; border-radius: 8px;">
+          <img src="/static/uploads/Gabin_Tape.png" alt="Kategori 2" style="width: 100%; height: 320px; object-fit: cover;">
+        </div>
+        <div style="margin-top: 10px; font-weight: bold; font-size: 18px;">Sweet & Aesthetic</div>
+      </div>
+
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <div style="overflow: hidden; border-radius: 8px;">
+          <img src="/static/uploads/Saturday_morning.png" alt="Kategori 3" style="width: 100%; height: 320px; object-fit: cover;">
+        </div>
+        <div style="margin-top: 10px; font-weight: bold; font-size: 18px;">Minimalist Photo Aesthetic</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Konten -->
+  <section style="padding: 60px 80px;">
+    <h2 style="font-size: 28px; margin-bottom: 30px;">Content</h2>
+    <div style="display: flex; gap: 30px; justify-content: space-between; flex-wrap: wrap;">
+
+      <div style="flex: 1; min-width: 280px; max-width: 32%;">
+        <img src="/static/uploads/ramesan_mak_sari.jpg" alt="Produk 1" style="width: 100%; height: 220px; object-fit: cover; border-radius: 6px;">
+        <h3 style="margin-top: 15px; font-size: 18px;">Vintage Indonesian Cuisine</h3>
+        <p style="color: #555;">A colorful classic design that brings nostalgia to old-time food stalls. Very suitable for promoting traditional culinary UMKM.</p>
+      </div>
+
+      <div style="flex: 1; min-width: 280px; max-width: 32%;">
+        <img src="/static/uploads/king_mack.jpg" alt="Produk 2" style="width: 100%; height: 220px; object-fit: cover; border-radius: 6px;">
+        <h3 style="margin-top: 15px; font-size: 18px;">Retro Label Market</h3>
+        <p style="color: #555;">A vintage label look that's perfect for packaged food products or grocery store brands with a 70s-80s feel.</p>
+      </div>
+
+      <div style="flex: 1; min-width: 280px; max-width: 32%;">
+        <img src="/static/uploads/Untitled_design.png" alt="Produk 3" style="width: 100%; height: 220px; object-fit: cover; border-radius: 6px;">
+        <h3 style="margin-top: 15px; font-size: 18px;">Dessert Campaign</h3>
+        <p style="color: #555;">Fresh and feminine design for dessert promotion. Ideal for promotional campaigns or seasonal menus.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  {% include 'footer.html' %}
+
+  {% include 'whatsapp.html' %}
+
+</body>
+</html>

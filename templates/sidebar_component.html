@@ -1,0 +1,64 @@
+<style>
+  .sidebar {
+    font-family: 'Segoe UI', sans-serif;
+    width: 220px;
+    background-color: #112d4e;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .sidebar h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-links a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 12px 0;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+
+  .sidebar-links a:hover {
+    color: #00d4ff;
+  }
+
+  .logout a {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .logout a:hover {
+    opacity: 0.8;
+  }
+</style>
+
+<div class="sidebar">
+  <div>
+    <h2>Trendify</h2>
+    <div class="sidebar-links">
+      <a href="/dashboard">Dashboard</a>
+      <a href="/dashboard/all">Manage products</a>
+      <a href="/dashboard/comment">Manage Comments</a>
+    </div>
+  </div>
+  <div class="logout">
+    <a onclick="confirmLogout()">Logout</a>
+  </div>
+</div>
+
+<!-- Tambahkan pemanggilan file JS -->
+<script src="{{ url_for('static', filename='js/logout.js') }}"></script>
